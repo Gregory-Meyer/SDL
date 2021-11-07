@@ -66,7 +66,10 @@ OFFSCREEN_GL_LoadLibrary(_THIS, const char* path)
         return ret;
     }
 
+    ++_this->gl_config.driver_loaded;
     ret = SDL_EGL_InitializeOffscreen(_this, 0);
+    --_this->gl_config.driver_loaded;
+
     if (ret != 0) {
         return ret;
     }
